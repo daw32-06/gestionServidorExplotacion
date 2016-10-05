@@ -1,0 +1,32 @@
+/**********************************************************************/
+/*   Creacion de Operadores web con acceso sftp                       */
+/*   Creacion de Sitios para cada Operador Web                        */
+/*   Configuracion para Apache2 y corriendo en Ubuntu Server 16.04.1  */
+/**********************************************************************/
+/*   Juan José Rubio Iglesias                                         */
+/**********************************************************************/
+
+
+
+1º Creamos el grupo de usuarios de sftp 
+
+groupadd sftpusers
+
+2º editamos el fichero /etc/ssh/sshd_config
+
+Comentamos la linea con # al principio
+
+	# Subsystem sftp /usr/lib/openssh/sftp-server
+Añadimos la linea
+	Subsystem sftp internal-sftp
+
+Al final del archivo añadimos
+
+	Match Group sftpusers
+		ChrootDirectory %h
+		ForceCommand internal-sftp
+		AllowTcpForwarding no
+		PermitTunnel no
+		X11Forwarding no
+
+3º Creamos el directorio de usuarios en /var/www/usuarios
