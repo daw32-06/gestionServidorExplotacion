@@ -15,19 +15,18 @@ groupadd sftpusers
 
 2º editamos el fichero /etc/ssh/sshd_config
 
-Comentamos la linea con # al principio
+	Comentamos la linea con # al principio
+		# Subsystem sftp /usr/lib/openssh/sftp-server
+	Añadimos la linea
+		Subsystem sftp internal-sftp
 
-	# Subsystem sftp /usr/lib/openssh/sftp-server
-Añadimos la linea
-	Subsystem sftp internal-sftp
+	Al final del archivo añadimos
 
-Al final del archivo añadimos
-
-	Match Group sftpusers
-		ChrootDirectory %h
-		ForceCommand internal-sftp
-		AllowTcpForwarding no
-		PermitTunnel no
-		X11Forwarding no
+		Match Group sftpusers
+			ChrootDirectory %h
+			ForceCommand internal-sftp
+			AllowTcpForwarding no
+			PermitTunnel no
+			X11Forwarding no
 
 3º Creamos el directorio de usuarios en /var/www/usuarios
