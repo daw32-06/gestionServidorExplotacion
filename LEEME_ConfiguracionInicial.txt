@@ -6,7 +6,8 @@
 /*   Juan José Rubio Iglesias                                         */
 /**********************************************************************/
 
-
+AVISO:	Necesitaremos tener creados los registros DNS ya sea en un 
+	servidor DNS o en los archivos HOSTS del Cliente y Servidor
 
 1º Creamos el grupo de usuarios de sftp 
 
